@@ -1,0 +1,101 @@
+* {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    /*outline: black solid 1px;*/
+    overflow: hidden;
+}
+
+body {
+    margin: 0 auto;
+    width: 75%;
+    border: 1px solid black;
+    display: flex;
+    text-align: center;
+    font-family: sans-serif;
+    justify-content: center;
+    background: mediumpurple;
+    color: blanchedalmond;
+}
+
+main {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    /*outline: green solid 3px;*/
+    place-items: center;
+    overflow: auto;
+}
+
+h1 {
+    font-size: 60px;
+    /*outline: yellow solid 3px;*/
+    margin-top: 10%;
+}
+
+h2 {
+    /*outline: purple solid 3px;*/
+}
+
+.question {
+    font-size: 25px;
+    /*outline: red solid 3px;*/
+    overflow: auto;
+    height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 4fr);
+    grid-gap: 10px;
+    width: 100%;
+}
+
+.btn-start {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn, .btn-start {
+    background: lightblue;
+    border: 2px solid darkblue;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: darkblue;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn:hover, .btn-start:hover {
+    background: darkblue;
+    color: lightblue;
+}
+
+#score {
+    font-size: 25px;
+    font-weight: bold;
+    /*outline: green solid 3px;*/
+}
+
+:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.clicked {
+    background-color: red;
+}
+
+.clicked.correct {
+    background-color: green;
+    transform: rotate(360deg);
+}
