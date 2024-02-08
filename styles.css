@@ -6,19 +6,17 @@
 
 html, body {
     height: 100%;
-    /*outline: black solid 1px;*/
     overflow: hidden;
 }
 
 body {
     margin: 0 auto;
     width: 75%;
-    border: 1px solid black;
     display: flex;
     text-align: center;
     font-family: sans-serif;
     justify-content: center;
-    background: mediumpurple;
+    background-image: linear-gradient(140deg, #EADEDB 0%, #BC70A4 50%, #BFD641 75%);
     color: blanchedalmond;
 }
 
@@ -27,24 +25,19 @@ main {
     width: 100%;
     height: 100%;
     justify-content: center;
-    /*outline: green solid 3px;*/
     place-items: center;
     overflow: auto;
 }
 
 h1 {
     font-size: 60px;
-    /*outline: yellow solid 3px;*/
     margin-top: 10%;
-}
-
-h2 {
-    /*outline: purple solid 3px;*/
+    -webkit-text-stroke-width: thin;
+    -webkit-text-stroke-color: mediumpurple;
 }
 
 .question {
     font-size: 25px;
-    /*outline: red solid 3px;*/
     overflow: auto;
     height: 150px;
     width: 100%;
@@ -75,7 +68,7 @@ h2 {
     cursor: pointer;
 }
 
-.btn:hover, .btn-start:hover {
+.btn:not(.clicked):hover, .btn-start:hover {
     background: darkblue;
     color: lightblue;
 }
@@ -83,7 +76,6 @@ h2 {
 #score {
     font-size: 25px;
     font-weight: bold;
-    /*outline: green solid 3px;*/
 }
 
 :disabled {
@@ -97,5 +89,4 @@ h2 {
 
 .clicked.correct {
     background-color: green;
-    transform: rotate(360deg);
 }
