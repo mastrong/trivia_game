@@ -1,4 +1,4 @@
-const trivia_url = 'https://opentdb.com/api.php?amount=10&type=multiple';
+const trivia_url = 'https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy';
 let questions = {};
 let start = document.getElementById("start-btn");
 let current_question = 0;
@@ -21,29 +21,50 @@ function disable_buttons() {
     const buttons = document.querySelectorAll('.btn');
     for (let button of buttons) {
         button.disabled = true;
+        if (button.classList.contains('correct')) {
+            button.style.border = "5px solid green";
+
+        } else {
+            button.style.border = "5px solid red";
+        }
     }
 }
 
 function check_answer(event) {
 
     let button = event.target;
+    let current_marker = document.getElementById(String(current_question));
 
     if (button.classList.contains('correct')) {
-        button.classList.add('clicked');
-
         current_score++;
-        document.getElementById("current_score").innerText = String(current_score);
+        current_marker.src = "green.svg";
+        current_marker.alt = "green";
+    } else {
+        current_marker.src = "red.svg";
+        current_marker.alt = "red";
+    }
 
+    button.classList.add('clicked');
+    // disable all buttons
+    disable_buttons();
+
+    if (current_question === questions.length) {
+        let q_div = document.getElementsByClassName("question")[0]
+        q_div.innerHTML = "Final score: " + current_score + "/" + questions.length;
+        q_div.classList.add("final");
+        document.getElementById("answer_buttons").style.display = "none";
+        start.style.display = "block";
+        start.innerHTML = "Restart";
+        start.onclick = () => {
+            location.reload()
+        }
 
     } else {
-        button.classList.add('clicked');
+        setTimeout(get_new_question, 1500);
     }
-    disable_buttons();
 }
 
 function get_new_question() {
-
-    let current = document.getElementById("current_question");
 
     // clear old answer
     let answer_div = document.getElementById("answer_buttons");
@@ -51,16 +72,8 @@ function get_new_question() {
         answer_div.removeChild(answer_div.firstChild);
     }
 
-    if (current_question === 0) {
-        start.innerHTML = "Next Question";
-    } else if (current_question === questions.length - 1) {
-        start.innerHTML = "Restart";
-        start.onclick = () => {
-            location.reload()
-        }
-    } else {
-        start.innerHTML = "Next Question";
-    }
+    start.style.display = "none";
+
     let new_q = document.getElementsByClassName("question")[0]
     new_q.innerHTML = questions[current_question].question;
     const answers = questions[current_question].incorrect_answers;
@@ -79,8 +92,11 @@ function get_new_question() {
     }
 
     // increment current question
-    current.innerText = String(current_question + 1);
     current_question++;
+
+    let current_marker = document.getElementById(String(current_question));
+    current_marker.src = "white.svg";
+    current_marker.alt = "white";
 }
 
 window.onload = async function () {
